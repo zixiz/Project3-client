@@ -43,6 +43,24 @@ export const RegisterAction = (input) => {
     };
 }
 
+export const CheckSession = () =>{
+    return async function (dispatch){
+        let response = await fetch('http://localhost:3000/checksession');
+        let data = await response.json();
+        if(data.success == true){
+            dispatch({
+                type: "CHECK_SESSION",
+                data: data
+            });
+        }else{
+            dispatch({
+                type: "SESSION_FAILED",
+                data: null
+            });
+        }
+    }
+}
+
 export const LoginAction = (input) => {
    
     return async function (dispatch) {
@@ -67,7 +85,7 @@ export const LoginAction = (input) => {
         let data = await res.json();
         dispatch({
             type: "LOGIN_STATUS",
-            data: data.msg
+            data: data
         });
        }
        

@@ -30,6 +30,26 @@ const myReducer = (state = initialState, action) => {
             msg: action.data
             });
             return newState;
+
+        case 'LOGIN_STATUS':
+        newState = Object.assign({}, state, {
+            role: action.data.role,
+            clientName: action.data.username
+            });
+            return newState;
+
+        case 'CHECK_SESSION':
+        newState = Object.assign({}, state, {
+            role: action.data.role,
+            clientName: action.data.name
+            });
+            return newState;
+        case 'SESSION_FAILED':
+        newState = Object.assign({}, state, {
+            role: "",
+            clientName: ""
+            });
+            return newState;
         // case 'MOVIES_LOADED':
         //     newState = Object.assign({}, state, {
         //         movies: action.data
