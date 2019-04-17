@@ -12,7 +12,6 @@ export const RegisterAction = (input) => {
         });
            
        }else if(newObjToRegister.pass !== newObjToRegister.repeat){
-            debugger;
             console.log("The password is incorrect")
             dispatch({
                 type: "INCORRECTSECOND_PASS",
@@ -35,11 +34,7 @@ export const RegisterAction = (input) => {
             type: "REGISTERED",
             data: data.msg
         });
-        debugger;
        }
-
-    //    if(!this.state.name || !this.state.email || !this.state.username ||  !this.state.pass || !this.state.repeat)
-
     };
 }
 
@@ -58,6 +53,29 @@ export const CheckSession = () =>{
                 data: null
             });
         }
+    }
+}
+
+
+export const DataUser = () =>{
+    return async function (dispatch){
+        let response = await fetch('http://localhost:3000/user');
+        let data = await response.json();
+            dispatch({
+                type: "USER_DATA",
+                data: data
+            });
+    }
+}
+
+export const Logout = () =>{
+    return async function (dispatch){
+        let response = await fetch('http://localhost:3000/logout');
+        let data = await response.json();
+            dispatch({
+                type: "LOGOUT",
+                data: data
+            });
     }
 }
 
@@ -88,9 +106,5 @@ export const LoginAction = (input) => {
             data: data
         });
        }
-       
-        
-
-
     };
 }

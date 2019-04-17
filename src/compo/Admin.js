@@ -27,9 +27,9 @@ const mapStateToProps = state => {
 const  mapDispatchToProps = dispatch => {  
   return  { 
       //every field change new action will dispatch 
-      LoginAction: function(input) { 
+      LoginAction: function() { 
         debugger;
-           return  dispatch(LoginAction(input));
+           return  dispatch(LoginAction());
           // return  dispatch({type:"LOAD_MOVIES", data:[]});
         }
       }

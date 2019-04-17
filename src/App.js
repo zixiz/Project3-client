@@ -42,18 +42,12 @@ class App extends Component {
     if(this.props.role == "user"){
       return(
         <div>
-          <Router>
+          <User />
+          {/* <Router>
             <div>
-              <nav>
-                <ul>
-                  <li>
-                    <Link to="/user">user</Link>
-                  </li>
-                </ul>
-              </nav>
-              <Route path="/user" exact component={User} />
+              <Route exact path="/user"  component={User} />
             </div>
-          </Router>
+          </Router> */}
         </div>
       )
     }

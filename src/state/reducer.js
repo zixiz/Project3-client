@@ -34,14 +34,18 @@ const myReducer = (state = initialState, action) => {
         case 'LOGIN_STATUS':
         newState = Object.assign({}, state, {
             role: action.data.role,
-            clientName: action.data.username
+            clientName: action.data.name,
+            id: action.data.id,
+            userName:action.data.username
             });
             return newState;
 
         case 'CHECK_SESSION':
         newState = Object.assign({}, state, {
+            id: action.data.id,
             role: action.data.role,
-            clientName: action.data.name
+            clientName: action.data.name,
+            userName:action.data.username
             });
             return newState;
         case 'SESSION_FAILED':
@@ -50,37 +54,19 @@ const myReducer = (state = initialState, action) => {
             clientName: ""
             });
             return newState;
-        // case 'MOVIES_LOADED':
-        //     newState = Object.assign({}, state, {
-        //         movies: action.data
-        //     });
-        //     return newState;
-            
-        //     case 'ERROR':
-        //     newState = Object.assign({}, state, {
-        //         msg: "ERROR",
-                
-        //     });
-
-        //     case 'FINISH_DOWNLOADING':
-
-        //     newState = Object.assign({}, state, {
-        //         msg: "done..."
-        //     });
-        //     return newState;
-
-            // case 'TITLE_CHANGE':
-            // newState = Object.assign({}, state);
-            
-            // for (let i = 0; i < newState.movies.length; i++) {
-
-            //     if (newState.movies[i].imdbID == action.data.imdbID) {
-
-            //         newState.movies[i].Title = action.data.newValue;
-            //     }
-            // }
-            // newState.date = Date.now();
-            // return newState;
+        
+        case 'LOGOUT':
+        newState = Object.assign({}, state, {
+            status:action.data.status
+            });
+            return newState;
+        
+        case 'UserData':
+        newState = Object.assign({}, state, {
+            clientName:action.data.name,
+            userName:action.data.username
+            });
+            return newState;
 
         default:
             return state;
