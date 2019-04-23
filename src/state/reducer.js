@@ -1,5 +1,6 @@
 const initialState = {
-
+    vacationOnFollow:[],
+    vacationsUnFollow:[],
 
 };
  
@@ -47,7 +48,9 @@ const myReducer = (state = initialState, action) => {
             clientName: action.data.name,
             userName:action.data.username
             });
+            debugger;
             return newState;
+            
         case 'SESSION_FAILED':
         newState = Object.assign({}, state, {
             role: "",
@@ -57,14 +60,40 @@ const myReducer = (state = initialState, action) => {
         
         case 'LOGOUT':
         newState = Object.assign({}, state, {
-            status:action.data.status
+            role:action.data.role
             });
             return newState;
         
         case 'UserData':
         newState = Object.assign({}, state, {
-            clientName:action.data.name,
-            userName:action.data.username
+            id:action.data.id,
+            role:action.data.role ,
+            clientName:action.data.clientName ,
+            userName:action.data.userName,
+            vacationOnFollow:action.data.vacationsOnFollow,
+            vacationsUnFollow:action.data.vacationsUnFollow
+            });
+            return newState;
+        
+        case 'ADD_FOLLOW':
+        newState = Object.assign({}, state, {
+            id:action.data.id,
+            role:action.data.role ,
+            clientName:action.data.clientName ,
+            userName:action.data.userName,
+            vacationOnFollow:action.data.vacationsOnFollow,
+            vacationsUnFollow:action.data.vacationsUnFollow
+            });
+            return newState;
+
+        case 'REMOVE_FOLLOW':
+        newState = Object.assign({}, state, {
+            id:action.data.id,
+            role:action.data.role ,
+            clientName:action.data.clientName ,
+            userName:action.data.userName,
+            vacationOnFollow:action.data.vacationsOnFollow,
+            vacationsUnFollow:action.data.vacationsUnFollow
             });
             return newState;
 

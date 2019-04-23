@@ -215,7 +215,7 @@ iframe {
   background: -o-linear-gradient(bottom, #e8519e, #c77ff2);
   background: -moz-linear-gradient(bottom, #e8519e, #c77ff2);
   background: linear-gradient(bottom, #e8519e, #c77ff2);
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 /*==================================================================
@@ -522,4 +522,16 @@ iframe {
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.card{
+  display: inline-block;
+  margin:10px;
+}
+
+.card-img-top {
+  width: 100%;
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+  height: 150px;
 }

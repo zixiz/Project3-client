@@ -4,7 +4,7 @@ export const RegisterAction = (input) => {
        
        let newObjToRegister = input;
 
-       if(newObjToRegister.name == ""||newObjToRegister.username==""||newObjToRegister.pass==""||newObjToRegister.repeat==""){
+       if(newObjToRegister.name === ""||newObjToRegister.username===""||newObjToRegister.pass===""||newObjToRegister.repeat===""){
            console.log("all mendatory")
            dispatch({
             type: "ALL_INPUT_MANDATORY",
@@ -42,7 +42,7 @@ export const CheckSession = () =>{
     return async function (dispatch){
         let response = await fetch('http://localhost:3000/checksession');
         let data = await response.json();
-        if(data.success == true){
+        if(data.success === true){
             dispatch({
                 type: "CHECK_SESSION",
                 data: data
@@ -61,8 +61,9 @@ export const DataUser = () =>{
     return async function (dispatch){
         let response = await fetch('http://localhost:3000/user');
         let data = await response.json();
+        debugger;
             dispatch({
-                type: "USER_DATA",
+                type: "UserData",
                 data: data
             });
     }
@@ -84,8 +85,7 @@ export const LoginAction = (input) => {
     return async function (dispatch) {
        
        let newObjToLogin = input;
-       console.log(newObjToLogin);
-       if(newObjToLogin.username =="" || newObjToLogin.pass==""){
+       if(newObjToLogin.username ==="" || newObjToLogin.pass===""){
         dispatch({
             type: "LOGIN_ERROR",
             data: null
@@ -107,4 +107,38 @@ export const LoginAction = (input) => {
         });
        }
     };
+}
+
+export const AddFollow = (vacationId) => {
+
+    return async (dispatch) => {
+
+        let res = await fetch(`http://localhost:3000/addfollow?vacationId=${vacationId}`);
+
+        let data = await res.json();
+
+        dispatch({
+            type: "ADD_FOLLOW",
+            data: data
+        });
+
+    };
+
+}
+
+export const RemoveFollow = (vacationId) => {
+
+    return async (dispatch) => {
+
+        let res = await fetch(`http://localhost:3000/removefollow?vacationId=${vacationId}`);
+
+        let data = await res.json();
+
+        dispatch({
+            type: "REMOVE_FOLLOW",
+            data: data
+        });
+
+    };
+
 }

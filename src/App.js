@@ -39,7 +39,7 @@ class App extends Component {
         </div>
       );
     }
-    if(this.props.role == "user"){
+    if(this.props.role === "user"){
       return(
         <div>
           <User />
@@ -51,7 +51,7 @@ class App extends Component {
         </div>
       )
     }
-    if(this.props.role == "admin"){
+    if(this.props.role === "admin"){
       return(
         <div>
           <Router>
