@@ -6,7 +6,8 @@ import {connect} from 'react-redux';
 class Login extends Component {
   state ={
     username:"",
-    pass:""
+    pass:"",
+    msg:""
   }
   handleTextforlogin(ev)
   {
@@ -14,7 +15,7 @@ class Login extends Component {
   }
 
   sendToLogin(){
-    this.props.LoginAction(this.state)
+    this.props.LoginAction(this.state);
   }
 
   render() {
@@ -50,8 +51,10 @@ class Login extends Component {
                           </button>
                         </div>
                       </div>
-                      <div className="wrap-input100 validate-input" data-validate = "Repeat Password is required">
-                        {this.props.msg}
+                      <div className="row mt-2">
+                        <div className="col"> 
+                          <span class="badge badge-warning">{this.props.msg}</span>
+                        </div>
                       </div>
                   </div>
                 </div>
@@ -62,16 +65,13 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => { 
-  return { msg: state.msg };
+  return {msg: state.msg};
 }; 
 
 const  mapDispatchToProps = dispatch => {  
   return  { 
-      //every field change new action will dispatch 
       LoginAction: function(input) { 
-        debugger;
            return  dispatch(LoginAction(input));
-          // return  dispatch({type:"LOAD_MOVIES", data:[]});
         }
       }
   };

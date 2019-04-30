@@ -85,13 +85,7 @@ export const LoginAction = (input) => {
     return async function (dispatch) {
        
        let newObjToLogin = input;
-       if(newObjToLogin.username ==="" || newObjToLogin.pass===""){
-        dispatch({
-            type: "LOGIN_ERROR",
-            data: null
-        });
-       }else{
-        let res = await fetch('http://localhost:3000/login', {
+         let res = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -107,7 +101,7 @@ export const LoginAction = (input) => {
         });
        }
     };
-}
+
 
 export const AddFollow = (vacationId) => {
 
@@ -142,3 +136,75 @@ export const RemoveFollow = (vacationId) => {
     };
 
 }
+
+export const UploadVacation = (vacationObj) => {
+
+    return async (dispatch) => {
+        console.log(vacationObj)
+        let res = await fetch(`http://localhost:3000/addvactions`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(vacationObj)
+        });
+        let data = await res.json();
+        dispatch({
+            type: "UPLOADED_VACATION",
+            data: data
+        });
+    };
+
+}
+
+export const DataAdmin = () => {
+
+    return async function (dispatch){
+        let response = await fetch('http://localhost:3000/admindata');
+        let data = await response.json();
+            dispatch({
+                type: "ADMIN_DATA",
+                data: data
+            });
+    }
+
+}
+
+export const DeleteVacation = (vacationId) => {
+
+    return async (dispatch) => {
+
+        let res = await fetch(`http://localhost:3000/deletevacation?vacationId=${vacationId}`);
+
+        let data = await res.json();
+
+        dispatch({
+            type: "DELETED_VACATION",
+            data: data
+        });
+
+    };
+
+}
+
+export const UpdateVacation = (form) => {
+
+    return async (dispatch) => {
+
+        let res = await fetch(`http://localhost:3000/admindata`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(form)
+          });
+        let data = await res.json();
+
+        dispatch({
+            type: "UPDATED_VACATION",
+            data: data
+        });
+
+    };
+
+}
+

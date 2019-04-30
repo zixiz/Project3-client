@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Logout , DataUser , AddFollow, RemoveFollow} from '../state/actions';
 import {connect} from 'react-redux';
-
+import io from 'socket.io-client';
 
 
 class User extends Component {
@@ -12,6 +12,10 @@ class User extends Component {
 
   componentDidMount(){
     this.props.DataUser();
+    const socket=io("http://localhost:8888");
+    socket.on("vacationsChange",(msg)=>{
+      this.props.DataUser();
+    });
   }
   
    sendToLogout(){
@@ -60,7 +64,7 @@ class User extends Component {
                             <p><label className="fas fa-plane-arrival plane-icon"></label>{v.end_date}</p>
                         </li>
                         <li className="list-group-item">{v.price}<label className="fas fa-dollar-sign dollar-icon"></label></li>
-                        <li className="list-group-item"><input onChange={this.FollowChange.bind(this,v.id)} checked={this.state.checkedOn}  type="checkbox" /><label className="fas fa-eye eye-icon">{v.followers}</label></li>
+                        <li className="list-group-item"><lable>Follow:</lable><input onChange={this.FollowChange.bind(this,v.id)} checked={this.state.checkedOn}  type="checkbox" /><label className="fas fa-eye eye-icon">{v.followers}</label></li>
                     </ul>
                   </div>
                   </div>
@@ -79,7 +83,7 @@ class User extends Component {
                               <p><label className="fas fa-plane-arrival plane-icon"></label>{v.end_date}</p>
                           </li>
                           <li className="list-group-item">{v.price}<label className="fas fa-dollar-sign dollar-icon"></label></li>
-                          <li className="list-group-item"><input onChange={this.FollowChange.bind(this,v.id)} checked={this.state.checkedOff}  type="checkbox" /><label className="fas fa-eye eye-icon">{v.followers}</label></li>
+                          <li className="list-group-item"><lable>Follow:</lable><input onChange={this.FollowChange.bind(this,v.id)} checked={this.state.checkedOff}  type="checkbox" /><label className="fas fa-eye eye-icon">{v.followers}</label></li>
                       </ul>
                     </div>
                     </div>

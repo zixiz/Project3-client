@@ -66,9 +66,11 @@ class Register extends Component {
                           </button>
                         </div>
                       </div>
-                      <div className="wrap-input100 validate-input" data-validate = "Repeat Password is required">
-                        {this.props.msg}
+                      <div className="row mt-2">
+                      <div className="col"> 
+                        <span class="badge badge-warning">{this.props.msg}</span>
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -83,10 +85,8 @@ const mapStateToProps = state => {
 
 const  mapDispatchToProps = dispatch => {  
   return  { 
-      //every field change new action will dispatch 
       registerAction: function(input) { 
            return  dispatch(RegisterAction(input));
-          // return  dispatch({type:"LOAD_MOVIES", data:[]});
         }
       }
   };

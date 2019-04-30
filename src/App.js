@@ -15,21 +15,23 @@ class App extends Component {
     this.props.CheckSession();
   }
 
+                  
   render() {
     if(!this.props.role){
       return (
         <div className="App">
           <Router>
-            <div>
-              <nav>
-                <ul>
-                  <li>
-                    <Link to="/">Login</Link>
-                  </li>
-                  <li>
-                    <Link to="/register">Register</Link>
-                  </li>
-                </ul>
+            <div className="container-fluid">
+              <nav class="navbar navbar-expand-lg navbar-light ml-auto">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                  <a class="nav-item nav-link btn"><Link to="/">Login</Link></a>
+                  <a class="nav-item nav-link btn"><Link to="/register">Register</Link></a>
+                </div>
+              </div>
               </nav>
   
               <Route path="/" exact component={Login} />
@@ -43,29 +45,13 @@ class App extends Component {
       return(
         <div>
           <User />
-          {/* <Router>
-            <div>
-              <Route exact path="/user"  component={User} />
-            </div>
-          </Router> */}
         </div>
       )
     }
     if(this.props.role === "admin"){
       return(
-        <div>
-          <Router>
-            <div>
-              <nav>
-                <ul>
-                  <li>
-                    <Link to="/admin">admin</Link>
-                  </li>
-                </ul>
-              </nav>
-              <Route path="/admin" exact component={Admin} />
-            </div>
-          </Router>
+        <div className="container">
+          <Admin/>
         </div>
       )
     }
