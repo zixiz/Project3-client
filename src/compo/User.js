@@ -11,8 +11,11 @@ class User extends Component {
   }
 
   componentDidMount(){
+    var protocol = window.location.protocol;
+    var slashes = protocol.concat("//");
+    var url = slashes.concat(window.location.hostname)+":8888";
     this.props.DataUser();
-    const socket=io("http://localhost:8888");
+    const socket=io(url);
     socket.on("vacationsChange",(msg)=>{
       this.props.DataUser();
     });

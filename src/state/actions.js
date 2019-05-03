@@ -20,7 +20,7 @@ export const RegisterAction = (input) => {
 
        }else{
         
-        let res = await fetch('http://localhost:3000/register', {
+        let res = await fetch('/register', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -40,7 +40,7 @@ export const RegisterAction = (input) => {
 
 export const CheckSession = () =>{
     return async function (dispatch){
-        let response = await fetch('http://localhost:3000/checksession');
+        let response = await fetch('/checksession');
         let data = await response.json();
         if(data.success === true){
             dispatch({
@@ -59,7 +59,7 @@ export const CheckSession = () =>{
 
 export const DataUser = () =>{
     return async function (dispatch){
-        let response = await fetch('http://localhost:3000/user');
+        let response = await fetch('/user');
         let data = await response.json();
         debugger;
             dispatch({
@@ -71,7 +71,7 @@ export const DataUser = () =>{
 
 export const Logout = () =>{
     return async function (dispatch){
-        let response = await fetch('http://localhost:3000/logout');
+        let response = await fetch('/logout');
         let data = await response.json();
             dispatch({
                 type: "LOGOUT",
@@ -85,7 +85,7 @@ export const LoginAction = (input) => {
     return async function (dispatch) {
        
        let newObjToLogin = input;
-         let res = await fetch('http://localhost:3000/login', {
+         let res = await fetch('/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -107,7 +107,7 @@ export const AddFollow = (vacationId) => {
 
     return async (dispatch) => {
 
-        let res = await fetch(`http://localhost:3000/addfollow?vacationId=${vacationId}`);
+        let res = await fetch(`/addfollow?vacationId=${vacationId}`);
 
         let data = await res.json();
 
@@ -124,7 +124,7 @@ export const RemoveFollow = (vacationId) => {
 
     return async (dispatch) => {
 
-        let res = await fetch(`http://localhost:3000/removefollow?vacationId=${vacationId}`);
+        let res = await fetch(`/removefollow?vacationId=${vacationId}`);
 
         let data = await res.json();
 
@@ -141,7 +141,7 @@ export const UploadVacation = (vacationObj) => {
 
     return async (dispatch) => {
         console.log(vacationObj)
-        let res = await fetch(`http://localhost:3000/addvactions`, {
+        let res = await fetch(`/addvactions`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -161,7 +161,7 @@ export const UploadVacation = (vacationObj) => {
 export const DataAdmin = () => {
 
     return async function (dispatch){
-        let response = await fetch('http://localhost:3000/admindata');
+        let response = await fetch('/admindata');
         let data = await response.json();
             dispatch({
                 type: "ADMIN_DATA",
@@ -175,7 +175,7 @@ export const DeleteVacation = (vacationId) => {
 
     return async (dispatch) => {
 
-        let res = await fetch(`http://localhost:3000/deletevacation?vacationId=${vacationId}`);
+        let res = await fetch(`/deletevacation?vacationId=${vacationId}`);
 
         let data = await res.json();
 
@@ -192,7 +192,7 @@ export const UpdateVacation = (form) => {
 
     return async (dispatch) => {
 
-        let res = await fetch(`http://localhost:3000/admindata`, {
+        let res = await fetch(`/admindata`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(form)
